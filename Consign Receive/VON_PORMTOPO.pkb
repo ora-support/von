@@ -5470,5 +5470,30 @@ AS
          COMMIT;
       END LOOP;
    END consign_receive;
+   
+FUNCTION get_mtl_duplicate_rows (p_source_code          VARCHAR2,
+                                 p_source_line_id       NUMBER,
+                                 p_source_header_id     NUMBER,
+                                 p_transaction_date     DATE,
+                                 p_subinventory_code    VARCHAR2)
+   RETURN NUMBER
+IS
+   c_existing   NUMBER;
+BEGIN
+   SELECT COUNT (*)
+     INTO c_existing
+     FROM mtl_transactions_iface_logs mti
+    WHERE     mti.source_code = p_source_code
+          AND mti.source_line_id = p_source_line_id
+          AND mti.source_header_id = p_source_header_id
+          AND mti.transaction_date = p_transaction_date
+          AND mti.subinventory_code = p_subinventory_code;
+
+   RETURN c_existing;
+EXCEPTION
+   WHEN OTHERS
+   THEN
+      RETURN 0;
+END;   
 END von_pormtopo;
 /
