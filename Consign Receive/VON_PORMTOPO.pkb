@@ -1,4 +1,4 @@
-/* Formatted on 9/7/2017 2:43:56 PM (QP5 v5.256.13226.35538) */
+/* Formatted on 9/20/2017 9:58:56 AM (QP5 v5.256.13226.35538) */
 CREATE OR REPLACE PACKAGE BODY APPS.von_pormtopo
 AS
    inv_api_version                  NUMBER DEFAULT 1.0;
@@ -5694,8 +5694,9 @@ AS
                  vsegment7,
                  vsegment8,
                  ndistribution_account_id);
-
-         COMMIT;
+                 
+         clear_mtl_logs;
+         COMMIT;         
 
          -- Lot Control
          IF rec.lot_control_code = 2                                -- Control
@@ -6274,6 +6275,18 @@ AS
       WHEN OTHERS
       THEN
          RETURN 0;
+   END;
+
+   PROCEDURE clear_mtl_logs (p_transaction_date DATE DEFAULT SYSDATE)
+   AS
+   BEGIN
+      DELETE FROM mtl_transactions_iface_logs
+            WHERE creation_date <= p_transaction_date - 30;
+   EXCEPTION
+      WHEN OTHERS
+      THEN
+         von_pormtopo.write_log ('ERROR',
+                                 'Clear MTL_LOGS error : ' || SQLERRM);
    END;
 END von_pormtopo;
 /

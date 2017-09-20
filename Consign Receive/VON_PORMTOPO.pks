@@ -1,4 +1,4 @@
-/* Formatted on 9/7/2017 2:19:09 PM (QP5 v5.256.13226.35538) */
+/* Formatted on 9/20/2017 10:00:57 AM (QP5 v5.256.13226.35538) */
 CREATE OR REPLACE PACKAGE APPS.von_pormtopo
    AUTHID CURRENT_USER
 AS
@@ -72,5 +72,7 @@ AS
       RETURN NUMBER;
 
    PROCEDURE clear_interface_table (p_id NUMBER, vstatus OUT VARCHAR2);
+
+   PROCEDURE clear_mtl_logs (p_transaction_date DATE DEFAULT SYSDATE);
 END von_pormtopo;
 /
