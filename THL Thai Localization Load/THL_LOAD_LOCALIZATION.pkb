@@ -6265,5 +6265,47 @@ IS
    BEGIN
       fnd_file.put_line (fnd_file.LOG, param_msg);
    END write_log;
-END thl_load_localization; 
+   
+FUNCTION thl_load_get_taxrate (p_invoice_id IN NUMBER)
+   RETURN NUMBER
+IS
+   v_tax_rate   NUMBER;
+/******************************************************************************
+   NAME:       thl_load_get_TaxRate
+   PURPOSE:
+
+   REVISIONS:
+   Ver        Date        Author           Description
+   ---------  ----------  ---------------  ------------------------------------
+   1.0        10/6/2017   Administrator       1. Created this function.
+
+   NOTES:
+
+   Automatically available Auto Replace Keywords:
+      Object Name:     thl_load_get_TaxRate
+      Sysdate:         10/6/2017
+      Date and Time:   10/6/2017, 12:02:40 PM, and 10/6/2017 12:02:40 PM
+      Username:        Administrator (set in TOAD Options, Procedure Editor)
+      Table Name:       (set in the "New PL/SQL Object" dialog)
+
+******************************************************************************/
+BEGIN
+   v_tax_rate := 0;
+
+     SELECT tax_rate INTO v_tax_rate
+       FROM ap_invoice_lines
+      WHERE line_type_lookup_code = 'TAX' AND invoice_id = p_invoice_id
+   GROUP BY invoice_id, tax_rate;
+
+   RETURN v_tax_rate;
+EXCEPTION
+   WHEN NO_DATA_FOUND
+   THEN
+      NULL;
+   WHEN OTHERS
+   THEN
+      -- Consider logging the error and then re-raise
+      RAISE;
+END thl_load_get_TaxRate;   
+END thl_load_localization;
 /

@@ -96,6 +96,28 @@ IS
 
 =======================================================================*/
    PROCEDURE write_log (param_msg VARCHAR2);
-END thl_load_localization;
+   
+/******************************************************************************
+   NAME:       thl_load_get_TaxRate
+   PURPOSE:
 
+   REVISIONS:
+   Ver        Date        Author           Description
+   ---------  ----------  ---------------  ------------------------------------
+   1.0        10/6/2017   Administrator       1. Created this function.
+
+   NOTES:
+
+   Automatically available Auto Replace Keywords:
+      Object Name:     thl_load_get_TaxRate
+      Sysdate:         10/6/2017
+      Date and Time:   10/6/2017, 12:02:40 PM, and 10/6/2017 12:02:40 PM
+      Username:        Administrator (set in TOAD Options, Procedure Editor)
+      Table Name:       (set in the "New PL/SQL Object" dialog)
+
+******************************************************************************/   
+FUNCTION thl_load_get_taxrate (p_invoice_id IN NUMBER)
+   RETURN NUMBER;
+      
+END thl_load_localization;
 /
