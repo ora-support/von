@@ -72,10 +72,10 @@ IS
                   zx_rates_b zrb,
                   ap_suppliers pv,
                   hr_locations hla,
-                  (  SELECT invoice_id, tax_rate_id, tax_rate_code
+                  /*(  SELECT invoice_id, tax_rate_id, tax_rate_code      --Fixed by spw@ice 6-Oct-2017, To optimize code
                        FROM ap_invoice_lines
                       WHERE line_type_lookup_code = 'TAX'
-                   GROUP BY invoice_id, tax_rate_id, tax_rate_code) inv_tax,
+                   GROUP BY invoice_id, tax_rate_id, tax_rate_code) inv_tax, */
                   xla_distribution_links xla
             WHERE     ai.invoice_id = ail.invoice_id
                   AND ail.invoice_id = aid.invoice_id
@@ -104,9 +104,9 @@ IS
                                                      tidl.invoice_id
                                                 FROM thl_data_loaded tidl
                                                WHERE tidl.reference_type = 'AP_INVOICE_DISTRIBUTIONS_GOODS' AND tidl.reference_id = aid.invoice_distribution_id)
-                  AND ai.invoice_id = inv_tax.invoice_id
+                  /*AND ai.invoice_id = inv_tax.invoice_id        --Fixed by spw@ice 6-Oct-2017, To optimize code
                   AND ail.tax_classification_code = inv_tax.tax_rate_code
-                  AND zrb.tax_rate_id = inv_tax.tax_rate_id
+                  AND zrb.tax_rate_id = inv_tax.tax_rate_id */
                   AND xla.source_distribution_id_num_1 = aid.invoice_distribution_id
                   AND xla.rounding_class_code = 'LIABILITY'
                   AND xla.source_distribution_type = 'AP_INV_DIST'
@@ -234,10 +234,10 @@ IS
                   zx_rates_b zrb,
                   ap_suppliers pv,
                   hr_locations hla,
-                  (  SELECT invoice_id, tax_rate_id, tax_rate_code
+                  /*(  SELECT invoice_id, tax_rate_id, tax_rate_code  --Fixed by spw@ice 6-Oct-2017, To optimize code
                        FROM ap_invoice_lines
                       WHERE line_type_lookup_code = 'TAX'
-                   GROUP BY invoice_id, tax_rate_id, tax_rate_code) inv_tax,
+                   GROUP BY invoice_id, tax_rate_id, tax_rate_code) inv_tax, */
                   xla_distribution_links xla
             WHERE     ai.invoice_id = ail.invoice_id
                   AND ail.invoice_id = aid.invoice_id
@@ -266,9 +266,9 @@ IS
                                                      tidl.invoice_id
                                                 FROM thl_data_loaded tidl
                                                WHERE tidl.reference_type = 'AP_INVOICE_DISTRIBUTIONS_GOODS' AND tidl.reference_id = aid.invoice_distribution_id)
-                  AND ai.invoice_id = inv_tax.invoice_id
+                  /*AND ai.invoice_id = inv_tax.invoice_id    --Fixed by spw@ice 6-Oct-2017, To optimize code
                   AND ail.tax_classification_code = inv_tax.tax_rate_code
-                  AND zrb.tax_rate_id = inv_tax.tax_rate_id
+                  AND zrb.tax_rate_id = inv_tax.tax_rate_id */
                   AND xla.source_distribution_id_num_1 = aid.invoice_distribution_id
                   AND xla.rounding_class_code = 'LIABILITY'
                   AND xla.source_distribution_type = 'AP_INV_DIST'
@@ -309,10 +309,10 @@ IS
                 zx_rates_b zrb,
                 ap_suppliers pv,
                 hr_locations hla,
-                (  SELECT invoice_id, tax_rate_id, tax_rate_code
+                /*(  SELECT invoice_id, tax_rate_id, tax_rate_code        --Fixed by spw@ice 6-Oct-2017, To optimize code
                      FROM ap_invoice_lines
                     WHERE line_type_lookup_code = 'TAX'
-                 GROUP BY invoice_id, tax_rate_id, tax_rate_code) inv_tax,
+                 GROUP BY invoice_id, tax_rate_id, tax_rate_code) inv_tax, */
                 xla_distribution_links xla
           WHERE     ai.invoice_id = ail.invoice_id
                 AND ail.invoice_id = aid.invoice_id
@@ -341,9 +341,9 @@ IS
                                                    tidl.invoice_id
                                               FROM thl_data_loaded tidl
                                              WHERE tidl.reference_type = 'AP_INVOICE_DISTRIBUTIONS_GOODS' AND tidl.reference_id = aid.invoice_distribution_id)
-                AND ai.invoice_id = inv_tax.invoice_id
+                /*AND ai.invoice_id = inv_tax.invoice_id      --Fixed by spw@ice 6-Oct-2017, To optimize code
                 AND ail.tax_classification_code = inv_tax.tax_rate_code
-                AND zrb.tax_rate_id = inv_tax.tax_rate_id
+                AND zrb.tax_rate_id = inv_tax.tax_rate_id */
                 AND xla.source_distribution_id_num_1 = aid.invoice_distribution_id
                 AND xla.rounding_class_code = 'LIABILITY'
                 AND xla.source_distribution_type = 'AP_INV_DIST'
@@ -376,10 +376,10 @@ IS
                 zx_rates_b zrb,
                 ap_suppliers pv,
                 hr_locations hla,
-                (  SELECT invoice_id, tax_rate_id, tax_rate_code
+                /*(  SELECT invoice_id, tax_rate_id, tax_rate_code    --Fixed by spw@ice 6-Oct-2017, To optimize code
                      FROM ap_invoice_lines
                     WHERE line_type_lookup_code = 'TAX'
-                 GROUP BY invoice_id, tax_rate_id, tax_rate_code) inv_tax,
+                 GROUP BY invoice_id, tax_rate_id, tax_rate_code) inv_tax,*/
                 xla_distribution_links xla
           WHERE     ai.invoice_id = ail.invoice_id
                 AND ail.invoice_id = aid.invoice_id
@@ -406,9 +406,9 @@ IS
                                                    tidl.invoice_id
                                               FROM thl_data_loaded tidl
                                              WHERE tidl.reference_type = 'AP_INVOICE_DISTRIBUTIONS_GOODS' AND tidl.reference_id = aid.invoice_distribution_id)
-                AND ai.invoice_id = inv_tax.invoice_id
+                /*AND ai.invoice_id = inv_tax.invoice_id  --Fixed by spw@ice 6-Oct-2017, To optimize code
                 AND ail.tax_rate_code = inv_tax.tax_rate_code
-                AND zrb.tax_rate_id = inv_tax.tax_rate_id
+                AND zrb.tax_rate_id = inv_tax.tax_rate_id*/
                 AND xla.source_distribution_id_num_1 = aid.invoice_distribution_id
                 AND xla.rounding_class_code = 'LIABILITY'
                 AND xla.source_distribution_type = 'AP_INV_DIST'
@@ -441,10 +441,10 @@ IS
                 zx_rates_b zrb,
                 ap_suppliers pv,
                 hr_locations hla,
-                (  SELECT invoice_id, tax_rate_id, tax_rate_code
+                /*(  SELECT invoice_id, tax_rate_id, tax_rate_code    --Fixed by spw@ice 6-Oct-2017, To optimize code
                      FROM ap_invoice_lines
                     WHERE line_type_lookup_code = 'TAX'
-                 GROUP BY invoice_id, tax_rate_id, tax_rate_code) inv_tax,
+                 GROUP BY invoice_id, tax_rate_id, tax_rate_code) inv_tax, */
                 xla_distribution_links xla
           WHERE     ai.invoice_id = ail.invoice_id
                 AND ail.invoice_id = aid.invoice_id
@@ -471,9 +471,9 @@ IS
                                                    tidl.invoice_id
                                               FROM thl_data_loaded tidl
                                              WHERE tidl.reference_type = 'AP_INVOICE_DISTRIBUTIONS_GOODS' AND tidl.reference_id = aid.invoice_distribution_id)
-                AND ai.invoice_id = inv_tax.invoice_id
+                /*AND ai.invoice_id = inv_tax.invoice_id  --Fixed by spw@ice 6-Oct-2017, To optimize code
                 AND ail.tax_rate_code = inv_tax.tax_rate_code
-                AND zrb.tax_rate_id = inv_tax.tax_rate_id
+                AND zrb.tax_rate_id = inv_tax.tax_rate_id */
                 AND xla.source_distribution_id_num_1 = aid.invoice_distribution_id
                 AND xla.rounding_class_code = 'LIABILITY'
                 AND xla.source_distribution_type = 'AP_INV_DIST'
@@ -565,10 +565,10 @@ IS
                          zx_rates_b zrb,
                          ap_suppliers pv,
                          hr_locations hla,
-                         (  SELECT invoice_id, tax_rate_id, tax_rate_code
+                         /*(  SELECT invoice_id, tax_rate_id, tax_rate_code   --Fixed by spw@ice 6-Oct-2017, To optimize code
                               FROM ap_invoice_lines
                              WHERE line_type_lookup_code = 'TAX'
-                          GROUP BY invoice_id, tax_rate_id, tax_rate_code) inv_tax,
+                          GROUP BY invoice_id, tax_rate_id, tax_rate_code) inv_tax, */
                          xla_distribution_links xla
                    WHERE     ai.invoice_id = ail.invoice_id
                          AND ail.invoice_id = aid.invoice_id
@@ -594,9 +594,9 @@ IS
                                                             tidl.invoice_id
                                                        FROM thl_data_loaded tidl
                                                       WHERE tidl.reference_type = 'AP_INVOICE_DISTRIBUTIONS_GOODS' AND tidl.reference_id = aid.invoice_distribution_id)
-                         AND ai.invoice_id = inv_tax.invoice_id
+                         /*AND ai.invoice_id = inv_tax.invoice_id     --Fixed by spw@ice 6-Oct-2017, To optimize code
                          AND ail.tax_classification_code = inv_tax.tax_rate_code
-                         AND zrb.tax_rate_id = inv_tax.tax_rate_id
+                         AND zrb.tax_rate_id = inv_tax.tax_rate_id*/
                          AND xla.source_distribution_id_num_1 = aid.invoice_distribution_id
                          AND xla.rounding_class_code = 'LIABILITY'
                          AND xla.source_distribution_type = 'AP_INV_DIST'
@@ -639,10 +639,10 @@ IS
                          zx_rates_b zrb,
                          ap_suppliers pv,
                          hr_locations hla,
-                         (  SELECT invoice_id, tax_rate_id, tax_rate_code
+                         /*(  SELECT invoice_id, tax_rate_id, tax_rate_code   --Fixed by spw@ice 6-Oct-2017, To optimize code
                               FROM ap_invoice_lines
                              WHERE line_type_lookup_code = 'TAX'
-                          GROUP BY invoice_id, tax_rate_id, tax_rate_code) inv_tax,
+                          GROUP BY invoice_id, tax_rate_id, tax_rate_code) inv_tax, */
                          xla_distribution_links xla
                    WHERE     ai.invoice_id = ail.invoice_id
                          AND ail.invoice_id = aid.invoice_id
@@ -668,9 +668,9 @@ IS
                                                             tidl.invoice_id
                                                        FROM thl_data_loaded tidl
                                                       WHERE tidl.reference_type = 'AP_INVOICE_DISTRIBUTIONS_GOODS' AND tidl.reference_id = aid.invoice_distribution_id)
-                         AND ai.invoice_id = inv_tax.invoice_id
+                         /*AND ai.invoice_id = inv_tax.invoice_id     --Fixed by spw@ice 6-Oct-2017, To optimize code
                          AND ail.tax_classification_code = inv_tax.tax_rate_code
-                         AND zrb.tax_rate_id = inv_tax.tax_rate_id
+                         AND zrb.tax_rate_id = inv_tax.tax_rate_id*/
                          AND xla.source_distribution_id_num_1 = aid.invoice_distribution_id
                          AND xla.rounding_class_code = 'LIABILITY'
                          AND xla.source_distribution_type = 'AP_INV_DIST'
@@ -721,10 +721,10 @@ IS
                          zx_rates_b zrb,
                          ap_suppliers pv,
                          hr_locations hla,
-                         (  SELECT invoice_id, tax_rate_id, tax_rate_code
+                         /*(  SELECT invoice_id, tax_rate_id, tax_rate_code   --Fixed by spw@ice 6-Oct-2017, To optimize code
                               FROM ap_invoice_lines
                              WHERE line_type_lookup_code = 'TAX'
-                          GROUP BY invoice_id, tax_rate_id, tax_rate_code) inv_tax,
+                          GROUP BY invoice_id, tax_rate_id, tax_rate_code) inv_tax,*/
                          xla_distribution_links xla
                    WHERE     ai.invoice_id = ail.invoice_id
                          AND ail.invoice_id = aid.invoice_id
@@ -751,9 +751,9 @@ IS
                                                             tidl.invoice_id
                                                        FROM thl_data_loaded tidl
                                                       WHERE tidl.reference_type = 'AP_INVOICE_DISTRIBUTIONS_GOODS' AND tidl.reference_id = aid.invoice_distribution_id)
-                         AND ai.invoice_id = inv_tax.invoice_id
+                         /*AND ai.invoice_id = inv_tax.invoice_id --Fixed by spw@ice 6-Oct-2017, To optimize code
                          AND ail.tax_rate_code = inv_tax.tax_rate_code
-                         AND zrb.tax_rate_id = inv_tax.tax_rate_id
+                         AND zrb.tax_rate_id = inv_tax.tax_rate_id */
                          AND xla.source_distribution_id_num_1 = aid.invoice_distribution_id
                          AND xla.rounding_class_code = 'LIABILITY'
                          AND xla.source_distribution_type = 'AP_INV_DIST'
@@ -796,10 +796,10 @@ IS
                          zx_rates_b zrb,
                          ap_suppliers pv,
                          hr_locations hla,
-                         (  SELECT invoice_id, tax_rate_id, tax_rate_code
+                         /*(  SELECT invoice_id, tax_rate_id, tax_rate_code       --Fixed by spw@ice 6-Oct-2017, To optimize code
                               FROM ap_invoice_lines
                              WHERE line_type_lookup_code = 'TAX'
-                          GROUP BY invoice_id, tax_rate_id, tax_rate_code) inv_tax,
+                          GROUP BY invoice_id, tax_rate_id, tax_rate_code) inv_tax,*/
                          xla_distribution_links xla
                    WHERE     ai.invoice_id = ail.invoice_id
                          AND ail.invoice_id = aid.invoice_id
@@ -826,9 +826,9 @@ IS
                                                             tidl.invoice_id
                                                        FROM thl_data_loaded tidl
                                                       WHERE tidl.reference_type = 'AP_INVOICE_DISTRIBUTIONS_GOODS' AND tidl.reference_id = aid.invoice_distribution_id)
-                         AND ai.invoice_id = inv_tax.invoice_id
+                         /*AND ai.invoice_id = inv_tax.invoice_id --Fixed by spw@ice 6-Oct-2017, To optimize code
                          AND ail.tax_rate_code = inv_tax.tax_rate_code
-                         AND zrb.tax_rate_id = inv_tax.tax_rate_id
+                         AND zrb.tax_rate_id = inv_tax.tax_rate_id*/
                          AND xla.source_distribution_id_num_1 = aid.invoice_distribution_id
                          AND xla.rounding_class_code = 'LIABILITY'
                          AND xla.source_distribution_type = 'AP_INV_DIST'
@@ -879,10 +879,10 @@ IS
                          zx_rates_b zrb,
                          ap_suppliers pv,
                          hr_locations hla,
-                         (  SELECT invoice_id, tax_rate_id, tax_rate_code
+                         /*(  SELECT invoice_id, tax_rate_id, tax_rate_code   --Fixed by spw@ice 6-Oct-2017, To optimize code
                               FROM ap_invoice_lines
                              WHERE line_type_lookup_code = 'TAX'
-                          GROUP BY invoice_id, tax_rate_id, tax_rate_code) inv_tax,
+                          GROUP BY invoice_id, tax_rate_id, tax_rate_code) inv_tax,*/
                          xla_distribution_links xla
                    WHERE     ai.invoice_id = ail.invoice_id
                          AND ail.invoice_id = aid.invoice_id
@@ -909,9 +909,9 @@ IS
                                                             tidl.invoice_id
                                                        FROM thl_data_loaded tidl
                                                       WHERE tidl.reference_type = 'AP_INVOICE_DISTRIBUTIONS_GOODS' AND tidl.reference_id = aid.invoice_distribution_id)
-                         AND ai.invoice_id = inv_tax.invoice_id
+                         /*AND ai.invoice_id = inv_tax.invoice_id     --Fixed by spw@ice 6-Oct-2017, To optimize code
                          AND ail.tax_rate_code = inv_tax.tax_rate_code
-                         AND zrb.tax_rate_id = inv_tax.tax_rate_id
+                         AND zrb.tax_rate_id = inv_tax.tax_rate_id */
                          AND xla.source_distribution_id_num_1 = aid.invoice_distribution_id
                          AND xla.rounding_class_code = 'LIABILITY'
                          AND xla.source_distribution_type = 'AP_INV_DIST'
@@ -954,10 +954,10 @@ IS
                          zx_rates_b zrb,
                          ap_suppliers pv,
                          hr_locations hla,
-                         (  SELECT invoice_id, tax_rate_id, tax_rate_code
+                         /*(  SELECT invoice_id, tax_rate_id, tax_rate_code   --Fixed by spw@ice 6-Oct-2017, To optimize code
                               FROM ap_invoice_lines
                              WHERE line_type_lookup_code = 'TAX'
-                          GROUP BY invoice_id, tax_rate_id, tax_rate_code) inv_tax,
+                          GROUP BY invoice_id, tax_rate_id, tax_rate_code) inv_tax, */
                          xla_distribution_links xla
                    WHERE     ai.invoice_id = ail.invoice_id
                          AND ail.invoice_id = aid.invoice_id
@@ -984,9 +984,9 @@ IS
                                                             tidl.invoice_id
                                                        FROM thl_data_loaded tidl
                                                       WHERE tidl.reference_type = 'AP_INVOICE_DISTRIBUTIONS_GOODS' AND tidl.reference_id = aid.invoice_distribution_id)
-                         AND ai.invoice_id = inv_tax.invoice_id
+                         /*AND ai.invoice_id = inv_tax.invoice_id     --Fixed by spw@ice 6-Oct-2017, To optimize code
                          AND ail.tax_rate_code = inv_tax.tax_rate_code
-                         AND zrb.tax_rate_id = inv_tax.tax_rate_id
+                         AND zrb.tax_rate_id = inv_tax.tax_rate_id */
                          AND xla.source_distribution_id_num_1 = aid.invoice_distribution_id
                          AND xla.rounding_class_code = 'LIABILITY'
                          AND xla.source_distribution_type = 'AP_INV_DIST'
@@ -1233,10 +1233,10 @@ IS
                          zx_rates_b zrb,
                          ap_suppliers pv,
                          hr_locations hla,
-                         (  SELECT invoice_id, tax_rate_id, tax_rate_code
+                         /*(  SELECT invoice_id, tax_rate_id, tax_rate_code       --Fixed by spw@ice 6-Oct-2017, To optimize code
                               FROM ap_invoice_lines
                              WHERE line_type_lookup_code = 'TAX'
-                          GROUP BY invoice_id, tax_rate_id, tax_rate_code) inv_tax,
+                          GROUP BY invoice_id, tax_rate_id, tax_rate_code) inv_tax,*/
                          xla_distribution_links xla
                    WHERE     ai.invoice_id = ail.invoice_id
                          AND ail.invoice_id = aid.invoice_id
@@ -1262,9 +1262,9 @@ IS
                                                             tidl.invoice_id
                                                        FROM thl_data_loaded tidl
                                                       WHERE tidl.reference_type = 'AP_INVOICE_DISTRIBUTIONS_GOODS' AND tidl.reference_id = aid.invoice_distribution_id)
-                         AND ai.invoice_id = inv_tax.invoice_id
+                         /*AND ai.invoice_id = inv_tax.invoice_id   --Fixed by spw@ice 6-Oct-2017, To optimize code
                          AND ail.tax_classification_code = inv_tax.tax_rate_code
-                         AND zrb.tax_rate_id = inv_tax.tax_rate_id
+                         AND zrb.tax_rate_id = inv_tax.tax_rate_id*/
                          AND xla.source_distribution_id_num_1 = aid.invoice_distribution_id
                          AND xla.rounding_class_code = 'LIABILITY'
                          AND xla.source_distribution_type = 'AP_INV_DIST'
@@ -1307,10 +1307,10 @@ IS
                          zx_rates_b zrb,
                          ap_suppliers pv,
                          hr_locations hla,
-                         (  SELECT invoice_id, tax_rate_id, tax_rate_code
+                         /*(  SELECT invoice_id, tax_rate_id, tax_rate_code   --Fixed by spw@ice 6-Oct-2017, To optimize code
                               FROM ap_invoice_lines
                              WHERE line_type_lookup_code = 'TAX'
-                          GROUP BY invoice_id, tax_rate_id, tax_rate_code) inv_tax,
+                          GROUP BY invoice_id, tax_rate_id, tax_rate_code) inv_tax,*/
                          xla_distribution_links xla
                    WHERE     ai.invoice_id = ail.invoice_id
                          AND ail.invoice_id = aid.invoice_id
@@ -1336,9 +1336,9 @@ IS
                                                             tidl.invoice_id
                                                        FROM thl_data_loaded tidl
                                                       WHERE tidl.reference_type = 'AP_INVOICE_DISTRIBUTIONS_GOODS' AND tidl.reference_id = aid.invoice_distribution_id)
-                         AND ai.invoice_id = inv_tax.invoice_id
+                         /*AND ai.invoice_id = inv_tax.invoice_id     --Fixed by spw@ice 6-Oct-2017, To optimize code
                          AND ail.tax_classification_code = inv_tax.tax_rate_code
-                         AND zrb.tax_rate_id = inv_tax.tax_rate_id
+                         AND zrb.tax_rate_id = inv_tax.tax_rate_id */
                          AND xla.source_distribution_id_num_1 = aid.invoice_distribution_id
                          AND xla.rounding_class_code = 'LIABILITY'
                          AND xla.source_distribution_type = 'AP_INV_DIST'
@@ -1388,10 +1388,10 @@ IS
                          zx_rates_b zrb,
                          ap_suppliers pv,
                          hr_locations hla,
-                         (  SELECT invoice_id, tax_rate_id, tax_rate_code
+                         /*(  SELECT invoice_id, tax_rate_id, tax_rate_code   --Fixed by spw@ice 6-Oct-2017, To optimize code
                               FROM ap_invoice_lines
                              WHERE line_type_lookup_code = 'TAX'
-                          GROUP BY invoice_id, tax_rate_id, tax_rate_code) inv_tax,
+                          GROUP BY invoice_id, tax_rate_id, tax_rate_code) inv_tax,*/
                          xla_distribution_links xla
                    WHERE     ai.invoice_id = ail.invoice_id
                          AND ail.invoice_id = aid.invoice_id
@@ -1418,9 +1418,9 @@ IS
                                                             tidl.invoice_id
                                                        FROM thl_data_loaded tidl
                                                       WHERE tidl.reference_type = 'AP_INVOICE_DISTRIBUTIONS_GOODS' AND tidl.reference_id = aid.invoice_distribution_id)
-                         AND ai.invoice_id = inv_tax.invoice_id
+                         /*AND ai.invoice_id = inv_tax.invoice_id     --Fixed by spw@ice 6-Oct-2017, To optimize code
                          AND ail.tax_rate_code = inv_tax.tax_rate_code
-                         AND zrb.tax_rate_id = inv_tax.tax_rate_id
+                         AND zrb.tax_rate_id = inv_tax.tax_rate_id */
                          AND xla.source_distribution_id_num_1 = aid.invoice_distribution_id
                          AND xla.rounding_class_code = 'LIABILITY'
                          AND xla.source_distribution_type = 'AP_INV_DIST'
@@ -1463,10 +1463,10 @@ IS
                          zx_rates_b zrb,
                          ap_suppliers pv,
                          hr_locations hla,
-                         (  SELECT invoice_id, tax_rate_id, tax_rate_code
+                         /*(  SELECT invoice_id, tax_rate_id, tax_rate_code       --Fixed by spw@ice 6-Oct-2017, To optimize code
                               FROM ap_invoice_lines
                              WHERE line_type_lookup_code = 'TAX'
-                          GROUP BY invoice_id, tax_rate_id, tax_rate_code) inv_tax,
+                          GROUP BY invoice_id, tax_rate_id, tax_rate_code) inv_tax, */
                          xla_distribution_links xla
                    WHERE     ai.invoice_id = ail.invoice_id
                          AND ail.invoice_id = aid.invoice_id
@@ -1493,9 +1493,9 @@ IS
                                                             tidl.invoice_id
                                                        FROM thl_data_loaded tidl
                                                       WHERE tidl.reference_type = 'AP_INVOICE_DISTRIBUTIONS_GOODS' AND tidl.reference_id = aid.invoice_distribution_id)
-                         AND ai.invoice_id = inv_tax.invoice_id
+                         /*AND ai.invoice_id = inv_tax.invoice_id     --Fixed by spw@ice 6-Oct-2017, To optimize code
                          AND ail.tax_rate_code = inv_tax.tax_rate_code
-                         AND zrb.tax_rate_id = inv_tax.tax_rate_id
+                         AND zrb.tax_rate_id = inv_tax.tax_rate_id  */
                          AND xla.source_distribution_id_num_1 = aid.invoice_distribution_id
                          AND xla.rounding_class_code = 'LIABILITY'
                          AND xla.source_distribution_type = 'AP_INV_DIST'
@@ -1545,10 +1545,10 @@ IS
                          zx_rates_b zrb,
                          ap_suppliers pv,
                          hr_locations hla,
-                         (  SELECT invoice_id, tax_rate_id, tax_rate_code
+                         /*(  SELECT invoice_id, tax_rate_id, tax_rate_code   --Fixed by spw@ice 6-Oct-2017, To optimize code
                               FROM ap_invoice_lines
                              WHERE line_type_lookup_code = 'TAX'
-                          GROUP BY invoice_id, tax_rate_id, tax_rate_code) inv_tax,
+                          GROUP BY invoice_id, tax_rate_id, tax_rate_code) inv_tax, */
                          xla_distribution_links xla
                    WHERE     ai.invoice_id = ail.invoice_id
                          AND ail.invoice_id = aid.invoice_id
@@ -1575,9 +1575,9 @@ IS
                                                             tidl.invoice_id
                                                        FROM thl_data_loaded tidl
                                                       WHERE tidl.reference_type = 'AP_INVOICE_DISTRIBUTIONS_GOODS' AND tidl.reference_id = aid.invoice_distribution_id)
-                         AND ai.invoice_id = inv_tax.invoice_id
+                         /*AND ai.invoice_id = inv_tax.invoice_id     --Fixed by spw@ice 6-Oct-2017, To optimize code
                          AND ail.tax_rate_code = inv_tax.tax_rate_code
-                         AND zrb.tax_rate_id = inv_tax.tax_rate_id
+                         AND zrb.tax_rate_id = inv_tax.tax_rate_id*/
                          AND xla.source_distribution_id_num_1 = aid.invoice_distribution_id
                          AND xla.rounding_class_code = 'LIABILITY'
                          AND xla.source_distribution_type = 'AP_INV_DIST'
@@ -1620,10 +1620,10 @@ IS
                          zx_rates_b zrb,
                          ap_suppliers pv,
                          hr_locations hla,
-                         (  SELECT invoice_id, tax_rate_id, tax_rate_code
+                         /*(  SELECT invoice_id, tax_rate_id, tax_rate_code       --Fixed by spw@ice 6-Oct-2017, To optimize code
                               FROM ap_invoice_lines
                              WHERE line_type_lookup_code = 'TAX'
-                          GROUP BY invoice_id, tax_rate_id, tax_rate_code) inv_tax,
+                          GROUP BY invoice_id, tax_rate_id, tax_rate_code) inv_tax, */
                          xla_distribution_links xla
                    WHERE     ai.invoice_id = ail.invoice_id
                          AND ail.invoice_id = aid.invoice_id
@@ -1650,9 +1650,9 @@ IS
                                                             tidl.invoice_id
                                                        FROM thl_data_loaded tidl
                                                       WHERE tidl.reference_type = 'AP_INVOICE_DISTRIBUTIONS_GOODS' AND tidl.reference_id = aid.invoice_distribution_id)
-                         AND ai.invoice_id = inv_tax.invoice_id
+                         /*AND ai.invoice_id = inv_tax.invoice_id     --Fixed by spw@ice 6-Oct-2017, To optimize code
                          AND ail.tax_rate_code = inv_tax.tax_rate_code
-                         AND zrb.tax_rate_id = inv_tax.tax_rate_id
+                         AND zrb.tax_rate_id = inv_tax.tax_rate_id */
                          AND xla.source_distribution_id_num_1 = aid.invoice_distribution_id
                          AND xla.rounding_class_code = 'LIABILITY'
                          AND xla.source_distribution_type = 'AP_INV_DIST'
@@ -1953,7 +1953,8 @@ IS
                   user_id last_updated_by,
                   SYSDATE last_update_date,
                   user_id last_update_login,
-                  inv_tax.tax_rate,
+                  thl_load_localization.thl_load_get_taxrate(ai.invoice_id) tax_rate,   /*Fixed by spw@ice 6-Oct-2017, To optimize code*/
+                  --inv_tax.tax_rate,
                   ai.gl_date rcp_tax_inv_date
              FROM ap_invoices ai,
                   ap_invoice_lines ail,
@@ -1975,7 +1976,7 @@ IS
                   ce_bank_acct_uses_all cbau,
                   ce_bank_branches_v cbb,
                   hr_locations hla,
-                  (  SELECT invoice_id,
+                  /*(  SELECT invoice_id,   --Fixed by spw@ice 6-Oct-2017, To optimize code
                             tax_rate_id,
                             tax_rate_code,
                             tax_rate
@@ -1984,7 +1985,7 @@ IS
                    GROUP BY invoice_id,
                             tax_rate_id,
                             tax_rate_code,
-                            tax_rate) inv_tax,
+                            tax_rate) inv_tax, */
                   xla_distribution_links xla
             WHERE     ai.invoice_id = ail.invoice_id
                   AND ail.invoice_id = aid.invoice_id
@@ -2018,9 +2019,9 @@ IS
                   AND ac.ce_bank_acct_use_id = cbau.bank_acct_use_id
                   AND cbau.bank_account_id = cba.bank_account_id
                   AND cbb.branch_party_id = cba.bank_branch_id
-                  AND ai.invoice_id = inv_tax.invoice_id
+                  /* AND ai.invoice_id = inv_tax.invoice_id  --Fixed by spw@ice 6-Oct-2017, To optimize code
                   AND ail.tax_classification_code = inv_tax.tax_rate_code
-                  AND zrb.tax_rate_id = inv_tax.tax_rate_id
+                  AND zrb.tax_rate_id = inv_tax.tax_rate_id */
                   AND xla.source_distribution_id_num_1 = aid.invoice_distribution_id
                   AND xla.rounding_class_code = 'LIABILITY'
                   AND xla.source_distribution_type = 'AP_INV_DIST'
@@ -2045,7 +2046,8 @@ IS
                   ac.vendor_name,
                   atc.percentage_rate,
                   ac.check_number,
-                  inv_tax.tax_rate,
+                  thl_load_localization.thl_load_get_taxrate(ai.invoice_id), /*Fixed by spw@ice 6-Oct-2017, To optimize code*/
+                  --inv_tax.tax_rate,
                   ai.gl_date
          ORDER BY ac.doc_sequence_value;
 
@@ -2099,10 +2101,10 @@ IS
                   ce_bank_acct_uses_all cbau,
                   ce_bank_branches_v cbb,
                   hr_locations hla,
-                  (  SELECT invoice_id, tax_rate_id, tax_rate_code
+                  /*(  SELECT invoice_id, tax_rate_id, tax_rate_code      --Fixed by spw@ice 6-Oct-2017, To optimize code
                        FROM ap_invoice_lines
                       WHERE line_type_lookup_code = 'TAX'
-                   GROUP BY invoice_id, tax_rate_id, tax_rate_code) inv_tax,
+                   GROUP BY invoice_id, tax_rate_id, tax_rate_code) inv_tax, */
                   xla_distribution_links xla
             WHERE     ai.invoice_id = ail.invoice_id
                   AND ail.invoice_id = aid.invoice_id
@@ -2136,9 +2138,9 @@ IS
                   AND ac.ce_bank_acct_use_id = cbau.bank_acct_use_id
                   AND cbau.bank_account_id = cba.bank_account_id
                   AND cbb.branch_party_id = cba.bank_branch_id
-                  AND ai.invoice_id = inv_tax.invoice_id
+                  /*AND ai.invoice_id = inv_tax.invoice_id    --Fixed by spw@ice 6-Oct-2017, To optimize code
                   AND ail.tax_classification_code = inv_tax.tax_rate_code
-                  AND zrb.tax_rate_id = inv_tax.tax_rate_id
+                  AND zrb.tax_rate_id = inv_tax.tax_rate_id */
                   AND xla.source_distribution_id_num_1 = aid.invoice_distribution_id
                   AND xla.rounding_class_code = 'LIABILITY'
                   AND xla.source_distribution_type = 'AP_INV_DIST'
@@ -2271,10 +2273,10 @@ IS
                   ce_bank_acct_uses_all cbau,
                   ce_bank_branches_v cbb,
                   hr_locations hla,
-                  (  SELECT invoice_id, tax_rate_id, tax_rate_code
+                  /*(  SELECT invoice_id, tax_rate_id, tax_rate_code  --Fixed by spw@ice 6-Oct-2017, To optimize code
                        FROM ap_invoice_lines
                       WHERE line_type_lookup_code = 'TAX'
-                   GROUP BY invoice_id, tax_rate_id, tax_rate_code) inv_tax,
+                   GROUP BY invoice_id, tax_rate_id, tax_rate_code) inv_tax, */
                   xla_distribution_links xla
             WHERE     ai.invoice_id = ail.invoice_id
                   AND ail.invoice_id = aid.invoice_id
@@ -2308,9 +2310,9 @@ IS
                   AND ac.ce_bank_acct_use_id = cbau.bank_acct_use_id
                   AND cbau.bank_account_id = cba.bank_account_id
                   AND cbb.branch_party_id = cba.bank_branch_id
-                  AND ai.invoice_id = inv_tax.invoice_id
+                  /*AND ai.invoice_id = inv_tax.invoice_id        --Fixed by spw@ice 6-Oct-2017, To optimize code
                   AND ail.tax_classification_code = inv_tax.tax_rate_code
-                  AND zrb.tax_rate_id = inv_tax.tax_rate_id
+                  AND zrb.tax_rate_id = inv_tax.tax_rate_id */
                   AND xla.source_distribution_id_num_1 = aid.invoice_distribution_id
                   AND xla.rounding_class_code = 'LIABILITY'
                   AND xla.source_distribution_type = 'AP_INV_DIST'
@@ -2357,10 +2359,10 @@ IS
                 ce_bank_acct_uses_all cbau,
                 ce_bank_branches_v cbb,
                 hr_locations hla,
-                (  SELECT invoice_id, tax_rate_id, tax_rate_code
+                /*(  SELECT invoice_id, tax_rate_id, tax_rate_code    --Fixed by spw@ice 6-Oct-2017, To optimize code
                      FROM ap_invoice_lines
                     WHERE line_type_lookup_code = 'TAX'
-                 GROUP BY invoice_id, tax_rate_id, tax_rate_code) inv_tax,
+                 GROUP BY invoice_id, tax_rate_id, tax_rate_code) inv_tax, */
                 xla_distribution_links xla
           WHERE     ai.invoice_id = ail.invoice_id
                 AND ail.invoice_id = aid.invoice_id
@@ -2394,9 +2396,9 @@ IS
                 AND ac.ce_bank_acct_use_id = cbau.bank_acct_use_id
                 AND cbau.bank_account_id = cba.bank_account_id
                 AND cbb.branch_party_id = cba.bank_branch_id
-                AND ai.invoice_id = inv_tax.invoice_id
+                /*AND ai.invoice_id = inv_tax.invoice_id      --Fixed by spw@ice 6-Oct-2017, To optimize code
                 AND ail.tax_classification_code = inv_tax.tax_rate_code
-                AND zrb.tax_rate_id = inv_tax.tax_rate_id
+                AND zrb.tax_rate_id = inv_tax.tax_rate_id */
                 AND xla.source_distribution_id_num_1 = aid.invoice_distribution_id
                 AND xla.rounding_class_code = 'LIABILITY'
                 AND xla.source_distribution_type = 'AP_INV_DIST'
@@ -2937,10 +2939,10 @@ IS
                                ce_bank_acct_uses_all cbau,
                                ce_bank_branches_v cbb,
                                hr_locations hla,
-                               (  SELECT invoice_id, tax_rate_id, tax_rate_code
+                               /*(  SELECT invoice_id, tax_rate_id, tax_rate_code --Fixed by spw@ice 6-Oct-2017, To optimize code
                                     FROM ap_invoice_lines
                                    WHERE line_type_lookup_code = 'TAX'
-                                GROUP BY invoice_id, tax_rate_id, tax_rate_code) inv_tax,
+                                GROUP BY invoice_id, tax_rate_id, tax_rate_code) inv_tax, */
                                xla_distribution_links xla
                          WHERE     ai.invoice_id = ail.invoice_id
                                AND ail.invoice_id = aid.invoice_id
@@ -2974,9 +2976,9 @@ IS
                                AND ac.ce_bank_acct_use_id = cbau.bank_acct_use_id
                                AND cbau.bank_account_id = cba.bank_account_id
                                AND cbb.branch_party_id = cba.bank_branch_id
-                               AND ai.invoice_id = inv_tax.invoice_id
+                               /*AND ai.invoice_id = inv_tax.invoice_id       --Fixed by spw@ice 6-Oct-2017, To optimize code
                                AND ail.tax_classification_code = inv_tax.tax_rate_code
-                               AND zrb.tax_rate_id = inv_tax.tax_rate_id
+                               AND zrb.tax_rate_id = inv_tax.tax_rate_id */
                                AND xla.source_distribution_id_num_1 = aid.invoice_distribution_id
                                AND xla.rounding_class_code = 'LIABILITY'
                                AND xla.source_distribution_type = 'AP_INV_DIST'
@@ -3028,10 +3030,10 @@ IS
                                ce_bank_acct_uses_all cbau,
                                ce_bank_branches_v cbb,
                                hr_locations hla,
-                               (  SELECT invoice_id, tax_rate_id, tax_rate_code
+                               /*(  SELECT invoice_id, tax_rate_id, tax_rate_code --Fixed by spw@ice 6-Oct-2017, To optimize code
                                     FROM ap_invoice_lines
                                    WHERE line_type_lookup_code = 'TAX'
-                                GROUP BY invoice_id, tax_rate_id, tax_rate_code) inv_tax,
+                                GROUP BY invoice_id, tax_rate_id, tax_rate_code) inv_tax, */
                                xla_distribution_links xla
                          WHERE     ai.invoice_id = ail.invoice_id
                                AND ail.invoice_id = aid.invoice_id
@@ -3065,9 +3067,9 @@ IS
                                AND ac.ce_bank_acct_use_id = cbau.bank_acct_use_id
                                AND cbau.bank_account_id = cba.bank_account_id
                                AND cbb.branch_party_id = cba.bank_branch_id
-                               AND ai.invoice_id = inv_tax.invoice_id
+                               /*AND ai.invoice_id = inv_tax.invoice_id       --Fixed by spw@ice 6-Oct-2017, To optimize code
                                AND ail.tax_classification_code = inv_tax.tax_rate_code
-                               AND zrb.tax_rate_id = inv_tax.tax_rate_id
+                               AND zrb.tax_rate_id = inv_tax.tax_rate_id */
                                AND xla.source_distribution_id_num_1 = aid.invoice_distribution_id
                                AND xla.rounding_class_code = 'LIABILITY'
                                AND xla.source_distribution_type = 'AP_INV_DIST'
