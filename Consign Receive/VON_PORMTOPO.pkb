@@ -21,7 +21,7 @@ AS
       IF UPPER (logtype) = 'LOG'
       THEN
          fnd_file.put_line (fnd_file.LOG, buff);
-      -- DBMS_OUTPUT.put_line (buff);
+      -- DBMS_OUTPUT.put_line (buffd);
       ELSE
          fnd_file.put_line (fnd_file.output, buff);
       END IF;
